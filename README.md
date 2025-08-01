@@ -1,0 +1,1 @@
+A simple custom load balancer built using Node.js and HTTP module. It distributes incoming requests to multiple backend servers using you can adjust the servers and use on your projects just using ![docker-compose up]();
