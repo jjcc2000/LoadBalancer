@@ -1,0 +1,55 @@
+version: "3.8"
+
+services:
+  server1:
+    build:
+      context: ./backend
+    command: node servers/server1.js
+    ports:
+      - "3001:3001"
+    networks:
+      - app-network
+
+  server2:
+    build:
+      context: ./backend
+    command: node servers/server2.js
+    ports:
+      - "3002:3002"
+    networks:
+      - app-network
+
+  server3:
+    build:
+      context: ./backend
+    command: node servers/server3.js
+    ports:
+      - "3003:3003"
+    networks:
+      - app-network
+
+  load-balancer:
+    build:
+      context: ./backend
+    command: node load-balancer.js
+    ports:
+      - "8080:8080"
+    depends_on:
+      - server1
+      - server2
+      - server3
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "5173:4173"
+    depends_on:
+      - load-balancer
+    networks:
+      - app-network
+
+networks:
+  app-network:
