@@ -6,9 +6,9 @@ const { recordRequest, getMetrics } = require("./metrics");
 
 const proxy = httpProxy.createProxyServer({});
 const servers = [
-  { host: "localhost", port: 3001 },
-  { host: "localhost", port: 3002 },
-  { host: "localhost", port: 3003 },
+  { host: "server1", port: 3001 },
+  { host: "server2", port: 3002 },
+  { host: "server3", port: 3003 },
 ];
 
 let current = 0;
